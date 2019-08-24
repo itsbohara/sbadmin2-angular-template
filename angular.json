@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "preserveSymlinks": true,
             "outputPath": "dist/sbAdmin2-angular-template",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -28,9 +29,15 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css",
+              "node_modules/startbootstrap-sb-admin-2/css/sb-admin-2.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js",
+              "node_modules/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js",
+              "node_modules/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -121,6 +128,41 @@
             "production": {
               "devServerTarget": "sbAdmin2-angular-template:serve:production"
             }
+          }
+        }
+      }
+    },
+    "sbatheme": {
+      "projectType": "library",
+      "root": "projects/sbatheme",
+      "sourceRoot": "projects/sbatheme/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/sbatheme/tsconfig.lib.json",
+            "project": "projects/sbatheme/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/sbatheme/src/test.ts",
+            "tsConfig": "projects/sbatheme/tsconfig.spec.json",
+            "karmaConfig": "projects/sbatheme/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/sbatheme/tsconfig.lib.json",
+              "projects/sbatheme/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
