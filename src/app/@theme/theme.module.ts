@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import {
     TopbarComponent,
-    SidebarComponent,
+    // SidebarComponent,
     FooterComponent,
 } from './components';
 
